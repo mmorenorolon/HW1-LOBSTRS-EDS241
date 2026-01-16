@@ -1,0 +1,38 @@
+---
+title: "Homework 1"
+subtitle: "California Spiny Lobster (*Panulirus Interruptus*): Assessing the Impact of Marine Protected Areas (MPAs) at 5 Reef Sites in Santa Barbara County"
+author: "Melannie Moreno Rolón"
+format: pdf
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#|label: load-libraries
+library(tidyverse)
+library(here)
+library(janitor)
+library(estimatr)  
+library(performance)
+library(jtools)
+library(gt)
+library(gtsummary)
+library(interactions) 
+```
+
+## Anticipating sources of selection bias
+
+## Read & wrangle data
+
+## Explore & visualize data
+
+## OLS regression-building intuition
+
+## Fitting GLMs
+
+## Compare models
+
+## Building intuition - fixed effects
+
+## Reconsider causal identification assumptions
+
