@@ -20,9 +20,45 @@ library(gtsummary)
 library(interactions) 
 ```
 
-## Anticipating sources of selection bias
+## Step 1: Anticipating sources of selection bias
 
-## Read & wrangle data
+## Step 2: Read & wrangle data
+
+a. Read in the raw data from the “data” folder named spiny_abundance_sb_18.csv. Name the data.frame rawdata
+
+b. Use the function clean_names() from the janitor package.
+
+```{r}
+rawdata <- read_csv(here::here("data", "spiny_abundance_sb_18.csv")) %>% 
+    janitor::clean_names() %>% 
+    naniar::replace_with_na(replace = list(size_mm = -99999))
+```
+
+c. Create a new df named tidyata. Using the variable site (reef location) create a new variable reef as a factor and add the following labels in the order listed (i.e., re-order the levels):
+
+```{r}
+tidydata <- rawdata %>% 
+    mutate(reef = factor(case_when(
+        site == "AQUE" ~ "Arroyo Quemado",
+        site == "IVEE" ~ "Isla Vista",
+        site == "MOHK" ~ "Mohawk",
+        site == "CARP" ~ "Carpenteria",
+        site == "NAPL" ~ "Naples"),
+        levels = c("Arroyo Quemado", "Carpenteria", "Mohawk", "Isla Vista",  "Naples"))
+        )
+```
+
+Create a new df named spiny_counts
+
+```{r}
+spiny_counts <- data.frame() 
+```
+
+d. Create a new variable counts to allow for an analysis of lobster counts where the unit-level of observation is the total number of observed lobsters per site, year and transect.
+
+Create a variable mean_size from the variable size_mm
+NOTE: The variable counts should have values which are integers (whole numbers).
+Make sure to account for missing cases (na)!
 
 ## Explore & visualize data
 
